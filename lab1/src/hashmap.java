@@ -1,0 +1,99 @@
+
+import java.util.*;
+
+public class hashmap {
+
+public static void main(String[] args) {
+
+	Scanner sc = new Scanner(System.in);
+	System.out.println("----MENU----");
+	System.out.println("1. Add");
+	System.out.println("2. Display using entrySet");
+	System.out.println("3. Display using keySet");
+	System.out.println("4. Search");
+	System.out.println("5. Delete");
+	System.out.println("6. Update");
+	System.out.println("7. Sort");
+	System.out.println("8. clear");
+	System.out.println("9. size");
+	System.out.println("10. Exit");
+
+	String usn,name;
+	Map<String,String> hmap = new HashMap<>();
+	while(true)
+	{
+		System.out.print("Enter your choice : ");
+		int ch = sc.nextInt();
+		
+		if(ch==1)
+		{
+			System.out.print("Enter USN : ");
+			usn = sc.next();
+			System.out.print("Enter Name : ");
+			name = sc.next();
+			hmap.put(usn, name);
+		}
+		else if(ch==2)
+		{
+			for(Map.Entry<String,String> n:hmap.entrySet())
+			{
+				System.out.print("USN : " + n.getKey());
+				System.out.println(" Name : " + n.getValue());
+			}
+		}
+		else if(ch==3)
+		{
+			System.out.println("KEYS : " + hmap.keySet());
+		}
+		else if(ch==4)
+		{
+			System.out.print("Enter the key you want to search : ");
+			String key = sc.next();
+			if(hmap.containsKey(key))
+				System.out.println("Name : "+ hmap.get(key));
+			else
+				System.out.println("Key not found");
+		}
+		else if(ch==5)
+		{
+			System.out.print("Enter USN to delete : ");
+			usn = sc.next();
+			hmap.remove(usn);
+		}
+		else if(ch==6)
+		{
+			System.out.print("Enter USN to update : ");
+			usn = sc.next();
+			
+			System.out.print("Enter Name to update : ");
+			name = sc.next();
+			
+			hmap.replace(usn,name);
+		
+		}
+		else if(ch==7)
+		{
+			Map<String,String> tmap = new TreeMap<>();
+			tmap.putAll(hmap);
+			System.out.println(tmap);
+		}
+		else if(ch==8)
+		{
+			hmap.clear();
+			System.out.println(hmap);
+		}
+		else if(ch==9)
+		{
+			System.out.println("Size : " + hmap.size());
+		}
+		else if(ch==10)
+		{
+			break;
+		}
+		else
+			System.out.println("Invalid choice");
+	
+	}
+	sc.close();
+}
+}
